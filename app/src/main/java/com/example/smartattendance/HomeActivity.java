@@ -1,58 +1,86 @@
 package com.example.smartattendance;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.button.MaterialButton;
+
 import org.w3c.dom.Text;
 
-public class HomeActivity extends AppCompatActivity implements LocationListener {
-    protected double latitude, longitude;
-    TextView txtLat, txtLong;
+import java.util.ArrayList;
+import java.util.List;
 
-    LocationManager locationManager;
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ImageView imageView = findViewById(R.id.imageView);
+
+        MaterialButton createButton = findViewById(R.id.button3);
+        MaterialButton deleteButton = findViewById(R.id.button7);
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click for createButton
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click for deleteButton
+            }
+        });
+
+
         // Find the EditText with the correct ID from the layout file
-        txtLat = (TextView) findViewById(R.id.txtvLat);
-        txtLong = (TextView) findViewById(R.id.txtvLong);
+        ListView list = findViewById(R.id.ListClass);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        List<String> arraylist = new ArrayList<>();
+        arraylist.add("class 1");
+        arraylist.add("class 2");
+        arraylist.add("class 3");
+        arraylist.add("class 4");
+        arraylist.add("class 5");
 
-        if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != )
-        // Now you can use welcomeEditText to perform any operations you need
-    }
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, arraylist);
+        list.setAdapter(arrayAdapter);
 
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    //clicked on class 1
+                    startActivity(new Intent(HomeActivity.this, classes.class));
+                } else if (position == 1) {
+                    //clicked on class 2
+                } else {
 
-    }
+                }
+            }
+        });
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        LocationListener.super.onStatusChanged(provider, status, extras);
-    }
-
-    @Override
-    public void onProviderEnabled(@NonNull String provider) {
-        LocationListener.super.onProviderEnabled(provider);
-    }
-
-    @Override
-    public void onProviderDisabled(@NonNull String provider) {
-        LocationListener.super.onProviderDisabled(provider);
     }
 }
 
