@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (found) {
                         // Login successful, navigate to the new screen
-                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, DataTableActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Wrong Email or Password", Toast.LENGTH_LONG).show();
