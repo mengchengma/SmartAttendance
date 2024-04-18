@@ -22,7 +22,5 @@ public class DataTableActivity extends AppCompatActivity {
         tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(this,header));
         tableView.setDataAdapter(new SimpleTableDataAdapter(this, data));
 
-
-
     }
 }
